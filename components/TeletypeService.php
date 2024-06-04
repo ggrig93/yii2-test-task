@@ -43,7 +43,7 @@ class TeletypeService extends Component
 
             if ($endpoint === 'new message') {
                 $logType = 'client';
-                if (strpos($content, 'ping?') >= 0) {
+                if (strpos($content, 'ping?') !== false) {
                     $sendMessage = $this->call($client, "POST", 'messageSend', [
                         'dialogId' => $dto->message['dialogId'],
                         'text' => 'pong!'
