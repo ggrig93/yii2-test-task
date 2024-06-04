@@ -37,19 +37,38 @@ $config = [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'levels' => ['info'],
+                    'categories' => ['client'],
+                    'logFile' => '@app/runtime/logs/client.log',
+                    'logVars' => [],
+                ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['info'],
+                    'categories' => ['operator'],
+                    'logFile' => '@app/runtime/logs/operator.log',
+                    'logVars' => [],
+                ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['info', 'error'],
+                    'categories' => ['teletype'],
+                    'logFile' => '@app/runtime/logs/teletype.log',
+                    'logVars' => [],
                 ],
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'POST teletype/webhook' => 'teletype/webhook',
             ],
         ],
-        */
+        'teletypeService' => [
+            'class' => 'components\TeletypeService',
+        ],
     ],
     'params' => $params,
 ];
